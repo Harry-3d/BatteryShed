@@ -31,10 +31,20 @@ Page: <% pages.forEach(function(page) { %>
             <input type="text" id="obj-name" name="objName">
         </div>
         <br>
+        
+        <!-- On button press, take photo from webcam -->
         <div>
-            <img src="images/vase.jpeg" alt="vase">
+            <label>Webcam: </label> 
+            <input class="buttons" type="button" value="Capture Photo" id="webcam-capture">
         </div>
         <br>
+        
+        <!-- Webcam capture -->
+        <div class="webcam-output">
+            <img src="images/vase.jpeg" alt="vase"> <!-- Place holder image -->
+        </div>
+        <br>
+        
         <div class="">
             <label>Location in Museum:</label>
             <input type="text" name="museumLocation">
@@ -63,7 +73,16 @@ Page: <% pages.forEach(function(page) { %>
         <div class="">
             <label>Text:</label>
             <input type="text" id="">
-        </div>        
+        </div>
+        <br>
+        
+        <!-- This button adds more fields -->
+        <!-- Field should have a field name and content can be a string -->
+        <div>
+        <input type="text" class="extra-field">
+        <input class="buttons" type="button" value="Add Field" id="add-field-btn">
+        </div>
+        <br>
         <input type="submit" value="Save">
 
         </div> <!-- Centeter -->
