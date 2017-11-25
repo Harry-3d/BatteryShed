@@ -7,10 +7,23 @@
 
 <body>
 <h1>Auto Data Generator</h1>
-    <form class="object-data">
+
+<p>{{count}} items in collection so far</p>
+
+<h2> Recent objects </h2>
+
+<table class="table">
+<tr><th>Object Name</th><th>Location in Museum</th><th>Location in Wild</th></tr>
+{{#results}}
+<tr><td>{{objName}}</td><td>{{museumLocation}}</td><td>{{wildLocation}}</tr>
+{{/results}}
+</table>
+
+<h2> Add new object </h2>
+    <form class="object-data" method="POST">
         <div class="form-group">
             <label>Object Name:</label>
-            <input type="text" id="obj-name">
+            <input type="text" id="obj-name" name="objName">
         </div>
         <br>
         <div>
@@ -18,13 +31,13 @@
         </div>
         <br>
         <div class="">
-            <label>Text:</label>
-            <input type="text" id="">
+            <label>Location in Museum:</label>
+            <input type="text" name="museumLocation">
         </div>
         <br>
         <div class="">
-            <label>Text:</label>
-            <input type="text" id="">
+            <label>Location in Wild:</label>
+            <input type="text" id="wildLocation">
         </div>        
         <br>
         <div class="">
@@ -46,6 +59,7 @@
             <label>Text:</label>
             <input type="text" id="">
         </div>        
+        <input type="submit" value="Save">
     </form>
 </body>
 

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const bodyParser= require('body-parser')
+const paginate = require('express-paginate');
 
 var mustacheExpress = require('mustache-express');
 app.engine('mustache', mustacheExpress());
@@ -12,6 +13,7 @@ app.set('view engine', 'mustache');
 app.set('views', __dirname + '/website');
 
 app.use(express.static('website'))
+app.use(paginate.middleware(10, 50));
 
 const MongoClient = require('mongodb').MongoClient
 
@@ -21,8 +23,15 @@ MongoClient.connect('mongodb://127.0.0.1:27017/museumhack', (err, database) => {
 })
 
 app.get('/', function (req, res) {
-  db.collection('objects').find().toArray(function(err, results) {
-    res.render('index', { title: 'Stuff in the Museum', message: 'Hello there!', results: results })
+  db.collection('objects').count(function(err, count) {
+  db.collection('objects').find().limit(req.query.limit).skip(req.skip).toArray(function(err, results) {
+      const pageCount = Math.ceil(count / req.query.limit);
+      res.render('index', {
+          results: results,
+          count: count,
+          pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+       })
+    })
   })
 })
 
