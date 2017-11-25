@@ -19,6 +19,9 @@
 <% }) %>
 </table>
 
+Page: <% pages.forEach(function(page) { %>
+    <a href="<%= page.url%>"><%= page.number%></a>
+<% })%>
 <h2> Add new object </h2>
     <form class="object-data" method="POST">
         <div class="form-group">
