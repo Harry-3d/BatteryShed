@@ -1,0 +1,43 @@
+/*
+form{
+    display: table;
+}
+label{
+    display: table-cell;
+}
+input{
+    display: table-cell;
+}
+.format.div {
+    display: table-row;
+}
+*/
+
+/* Centers content */
+.centerer{
+    text-align: center;
+    width:960px;
+    margin:0 auto; 
+}
+
+/* Forms for data entry */
+label{
+    display:inline-block;
+    width: 200px;
+    text-align: left;
+}
+
+.extra-field label{
+    width: 50px;
+}
+
+/* Conveyor and webcam status */
+.status{
+    float: right; 
+    margin-top: 70px;
+   /* text-align: right; */
+}
+#status{
+    color: greenyellow;
+}
+

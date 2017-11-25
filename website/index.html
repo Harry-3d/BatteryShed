@@ -1,5 +1,6 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -7,86 +8,112 @@
 </head>
 
 <body>
-<div class="centerer">   
-<h1>Auto Data Generator</h1>
+    <!-- Conveyor belt and webcam status -->
+    <!-- Eg statuses; Advanving Conveyor, Capturing Photo, Ready, Conveyor offline, Camera offline. -->
+    <!-- TODO: set status when server calls functions -->
+    <br>
+    <div class="status">
+        <span>Status: </span><span id="status">SET_ME</span>
+    </div>
+    <div class="centerer">
+        <h1>Auto Data Generator</h1>
 
-<p><%= count %> items in collection so far</p>
+        <p>
+            <%= count %> items in collection so far</p>
 
-<h2> Recent objects </h2>
+        <h2> Recent objects </h2>
 
-<table class="table">
-<tr><th>Object Name</th><th>Location in Museum</th><th>Location in Wild</th></tr>
-<% results.forEach(function(result) { %>
-<tr><td><%= result.objName%></td><td><%= result.museumLocation%></td><td><%= result.wildLocation%></tr>
-<% }) %>
-</table>
+        <table class="table">
+            <tr>
+                <th>Object Name</th>
+                <th>Location in Museum</th>
+                <th>Location in Wild</th>
+            </tr>
+            <% results.forEach(function(result) { %>
+                <tr>
+                    <td>
+                        <%= result.objName%>
+                    </td>
+                    <td>
+                        <%= result.museumLocation%>
+                    </td>
+                    <td>
+                        <%= result.wildLocation%>
+                </tr>
+                <% }) %>
+        </table>
 
-Page: <% pages.forEach(function(page) { %>
-    <a href="<%= page.url%>"><%= page.number%></a>
-<% })%>
-<h2> Add new object </h2>
-    <form class="object-data" method="POST">
-        <div class="form-group">
-            <label>Object Name:</label>
-            <input type="text" id="obj-name" name="objName">
-        </div>
-        <br>
-        
-        <!-- On button press, take photo from webcam -->
-        <div>
-            <label>Webcam: </label> 
-            <input class="buttons" type="button" value="Capture Photo" id="webcam-capture">
-        </div>
-        <br>
-        
-        <!-- Webcam capture -->
-        <div class="webcam-output">
-            <img src="images/vase.jpeg" alt="vase"> <!-- Place holder image -->
-        </div>
-        <br>
-        
-        <div class="">
-            <label>Location in Museum:</label>
-            <input type="text" name="museumLocation">
-        </div>
-        <br>
-        <div class="">
-            <label>Location in Wild:</label>
-            <input type="text" id="wildLocation">
-        </div>        
-        <br>
-        <div class="">
-            <label>Text:</label>
-            <input type="text" id="">
-        </div>
-        <br>
-        <div class="">
-            <label>Text:</label>
-            <input type="text" id="">
-        </div>
-        <br>
-        <div class="">
-            <label>Text:</label>
-            <input type="text" id="">
-        </div>
-        <br>
-        <div class="">
-            <label>Text:</label>
-            <input type="text" id="">
-        </div>
-        <br>
-        
-        <!-- This button adds more fields -->
-        <!-- Field should have a field name and content can be a string -->
-        <div>
-        <input type="text" class="extra-field">
-        <input class="buttons" type="button" value="Add Field" id="add-field-btn">
-        </div>
-        <br>
-        <input type="submit" value="Save">
+        Page:
+        <% pages.forEach(function(page) { %>
+            <a href="<%= page.url%>">
+                <%= page.number%>
+            </a>
+            <% })%>
+                <h2> Add new object </h2>
 
-        </div> <!-- Centeter -->
+                <br>
+
+                <!-- Contains all the data fields and photo display from webcam -->
+                <form class="object-data" method="POST">
+
+                    <!-- On button press, take photo from webcam -->
+                    <div>
+                        <label>Webcam: </label> <input class="buttons" type="button" value="Capture Photo" id="webcam-capture">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label>Object Name:</label><input type="text" id="obj-name" name="objName">
+                    </div>
+                    <br>
+
+                    <!-- Webcam capture -->
+                    <div class="webcam-output">
+                        <img src="images/vase.jpeg" alt="vase"><!-- Place holder image -->
+                    </div>
+                    <br>
+
+                    <div class="">
+                        <label>Expedition:</label><input type="text" name="museumLocation">
+                    </div>
+                    <br>
+                    <div class="">
+                        <label>Sample Text:</label><input type="text" id="wildLocation">
+                    </div>
+                    <br>
+                    <div class="">
+                        <label>Origin:</label><input type="text" id="">
+                    </div>
+                    <br>
+                    <div class="">
+                        <label>Collection: </label><input type="text" id="">
+                    </div>
+                    <br>
+                    <div class="">
+                        <label>Value: </label><input type="text" id="">
+                    </div>
+                    <br>
+                    <div class="">
+                        <label>Storeage location: </label><input type="text" id="">
+                    </div>
+                    <br>
+
+                    <!-- This button adds more fields -->
+                    <!-- Field should have a field name and content can be a string -->
+                    <!-- TODO: Add javascript -->
+                    <br>
+                    <div class="extra-field">
+                        <h3> Extra Fields</h3>
+                        <label>Field: </label><input type="text" class="extra-field"> <label>Data: </label><input type="text" class="extra-field">
+                        <input class="buttons" type="button" value="Add Field" id="add-field-btn">
+                    </div>
+                    <br>
+                    <input type="submit" value="Save">
+
+
+    </div>
+    <!-- Centeter -->
     </form>
 </body>
 
-</html> 
+</html>
