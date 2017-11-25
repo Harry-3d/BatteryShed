@@ -9,7 +9,7 @@ app.engine('mustache', mustacheExpress());
 
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.set('view engine', 'mustache');
+app.set('view engine', 'ejs');
 app.set('views', __dirname + '/website');
 
 app.use(express.static('website'))

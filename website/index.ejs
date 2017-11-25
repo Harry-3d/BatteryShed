@@ -8,15 +8,15 @@
 <body>
 <h1>Auto Data Generator</h1>
 
-<p>{{count}} items in collection so far</p>
+<p><%= count %> items in collection so far</p>
 
 <h2> Recent objects </h2>
 
 <table class="table">
 <tr><th>Object Name</th><th>Location in Museum</th><th>Location in Wild</th></tr>
-{{#results}}
-<tr><td>{{objName}}</td><td>{{museumLocation}}</td><td>{{wildLocation}}</tr>
-{{/results}}
+<% results.forEach(function(result) { %>
+<tr><td><%= result.objName%></td><td><%= result.museumLocation%></td><td><%= result.wildLocation%></tr>
+<% }) %>
 </table>
 
 <h2> Add new object </h2>
