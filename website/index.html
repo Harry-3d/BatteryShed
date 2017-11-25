@@ -5,19 +5,18 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Auto Data Generator</title>
 </head>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <body>
 <div class="centerer">   
 <h1>Auto Data Generator</h1>
-
 <p><%= count %> items in collection so far</p>
 
 <h2> Recent objects </h2>
 
 <table class="table">
-<tr><th>Object Name</th><th>Location in Museum</th><th>Location in Wild</th></tr>
+<tr><th>Object Name</th><th>Location in Museum</th><th>Location in Wild</th><th>Image</th></tr>
 <% results.forEach(function(result) { %>
-<tr><td><%= result.objName%></td><td><%= result.museumLocation%></td><td><%= result.wildLocation%></tr>
+<tr><td><%= result.objName%></td><td><%= result.museumLocation%></td><td><%= result.wildLocation%></td><td><% if (result.imageUrl) { %><img src="<%= result.imageUrl %>" width="200" height="200"><% } %></td></tr>
 <% }) %>
 </table>
 
@@ -34,17 +33,11 @@ Page: <% pages.forEach(function(page) { %>
         
         <!-- On button press, take photo from webcam -->
         <div>
-            <label>Webcam: </label> 
-            <input class="buttons" type="button" value="Capture Photo" id="webcam-capture">
+            <video autoplay id="video" width="640" height="480"></video>
+            <canvas id="canvas" width="640" height="480" style="display:none"></canvas>
+            <input type="hidden" name="imageUrl" id="image-url-input">
         </div>
         <br>
-        
-        <!-- Webcam capture -->
-        <div class="webcam-output">
-            <img src="images/vase.jpeg" alt="vase"> <!-- Place holder image -->
-        </div>
-        <br>
-        
         <div class="">
             <label>Location in Museum:</label>
             <input type="text" name="museumLocation">
@@ -83,10 +76,12 @@ Page: <% pages.forEach(function(page) { %>
         <input class="buttons" type="button" value="Add Field" id="add-field-btn">
         </div>
         <br>
-        <input type="submit" value="Save">
+        <input type="submit" value="Save" id="Save">
 
-        </div> <!-- Centeter -->
+    </div> <!-- Centeter -->
+    </div>
     </form>
+    </div>
+            <script src="videocapture.js"></script>
 </body>
-
 </html> 

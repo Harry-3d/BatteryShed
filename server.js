@@ -7,7 +7,7 @@ const paginate = require('express-paginate');
 var mustacheExpress = require('mustache-express');
 app.engine('mustache', mustacheExpress());
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true,limit: '50mb'}))
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
