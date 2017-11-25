@@ -9,10 +9,11 @@ app.engine('mustache', mustacheExpress());
 
 app.use(bodyParser.urlencoded({extended: true}))
 
+app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
+
 app.set('views', __dirname + '/website');
 
-app.use(express.static('website'))
 app.use(paginate.middleware(10, 50));
 
 const MongoClient = require('mongodb').MongoClient
@@ -23,10 +24,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017/museumhack', (err, database) => {
 })
 
 app.get('/', function (req, res) {
+  console.log("Foo")
   db.collection('objects').count(function(err, count) {
   db.collection('objects').find().limit(req.query.limit).skip(req.skip).toArray(function(err, results) {
       const pageCount = Math.ceil(count / req.query.limit);
-      res.render('index', {
+      res.render('index.html', {
           results: results,
           count: count,
           pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
@@ -44,3 +46,5 @@ app.post("/", function (req, res) {
     res.redirect('/')
   })
 })
+
+app.use(express.static('website'))
