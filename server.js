@@ -49,9 +49,20 @@ app.get('/item/:id', function (req, res) {
 })
 
 app.post("/", function (req, res) {
-  db.collection('objects').save(req.body, (err, result) => {
+  // Reorder the custom fields
+  obj = req.body
+  custom = {}
+  for (n in obj) {
+    console.log(n)
+    var matches = n.match(/customFieldName(\d+)$/)
+    if (matches && matches[1]) {
+      custom[obj[n]] = obj["customFieldValue"+matches[1]]
+    }
+  }
+  console.log(custom)
+  obj.customFields = custom
+  db.collection('objects').save(obj, (err, result) => {
     if (err) return console.log(err)
-
     console.log('saved to database')
     res.redirect('/')
   })

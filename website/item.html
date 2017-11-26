@@ -20,9 +20,10 @@
         <tr><th>Collection:</th><td><%= item.collection %></td></tr>
         <tr><th>Value:</th><td><%= item.value %></td></tr>
         <tr><th>Storage Location:</th><td><%= item.storageLocation %></td></tr>
-        <% item.customFields && item.customFields.forEach(function(k,v) { %>
-            <tr><th><%= k %></th><td><%= v %>
-        <% }) %>
+        <% if (item.customFields) {
+            for (k in item.customFields) { %>
+            <tr><th><%= k %></th><td><%= item.customFields[k] %>
+        <% }} %>
     </table>
 </body>
 
