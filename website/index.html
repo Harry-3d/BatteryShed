@@ -102,10 +102,13 @@
                     <!-- Field should have a field name and content can be a string -->
                     <!-- TODO: Add javascript -->
                     <br>
-                    <div class="extra-field">
-                        <h3> Extra Fields</h3>
-                        <label>Field: </label><input type="text" class="extra-field"> <label>Data: </label><input type="text" class="extra-field">
-                        <input class="buttons" type="button" value="Add Field" id="add-field-btn">
+                    <h3> Extra Fields</h3>
+                    <div>
+                        <div class="extra-field" data-fieldno="1">
+                            <label>Field: </label><input type="text" class="extra-field" name="customFieldName1">
+                            <label>Data: </label><input type="text" class="extra-field" name="customFieldValue1">
+                            <input class="buttons" type="button" value="Add Field" id="add-field-btn">
+                        </div>
                     </div>
                     <br>
                     <input type="submit" value="Save">
@@ -115,6 +118,7 @@
     <!-- Centeter -->
 
     <script src="videocapture.js"></script>
+    <script src="customfields.js"></script>
 </body>
 
 </html>
