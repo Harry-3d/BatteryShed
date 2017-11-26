@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Auto Data Generator</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<body>
+    <h1><%= item.objName %></h1>
+
+    <img src="<%= item.imageUrl %>">
+
+    <table>
+        <tr><th>Expedition:</th><td><%= item.museumLocation %></td></tr>
+        <tr><th>Wild location:</th><td><%= item.wildLocation %></td></tr>
+        <tr><th>Origin:</th><td><%= item.origin %></td></tr>
+        <tr><th>Collection:</th><td><%= item.collection %></td></tr>
+        <tr><th>Value:</th><td><%= item.value %></td></tr>
+        <tr><th>Storage Location:</th><td><%= item.storageLocation %></td></tr>
+        <% item.customFields && item.customFields.forEach(function(k,v) { %>
+            <tr><th><%= k %></th><td><%= v %>
+        <% }) %>
+    </table>
+</body>
+
+</html>

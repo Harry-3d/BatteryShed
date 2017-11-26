@@ -17,6 +17,7 @@ app.set('views', __dirname + '/website');
 app.use(paginate.middleware(10, 50));
 
 const MongoClient = require('mongodb').MongoClient
+const ObjectId = require('mongodb').ObjectID;
 
 MongoClient.connect('mongodb://127.0.0.1:27017/museumhack', (err, database) => {
   db = database
@@ -24,7 +25,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/museumhack', (err, database) => {
 })
 
 app.get('/', function (req, res) {
-  console.log("Foo")
   db.collection('objects').count(function(err, count) {
   db.collection('objects').find().limit(req.query.limit).skip(req.skip).toArray(function(err, results) {
       const pageCount = Math.ceil(count / req.query.limit);
@@ -37,6 +37,16 @@ app.get('/', function (req, res) {
   })
 })
 
+/* A page about an item in the catalogue */
+app.get('/item/:id', function (req, res) {
+  var id = new ObjectId(req.params.id)
+  db.collection('objects').findOne({_id: id}, function(err, result) {
+    // What error checking?
+    res.render('item.html', {
+        item: result
+   })
+  })
+})
 
 app.post("/", function (req, res) {
   db.collection('objects').save(req.body, (err, result) => {
