@@ -33,13 +33,17 @@
             <% results.forEach(function(result) { %>
                 <tr>
                     <td>
-                        <%= result.objName%>
+                        <a href="/item/<%= result._id%>"><%= result.objName%></a>
                     </td>
                     <td>
                         <%= result.museumLocation%>
                     </td>
                     <td>
                         <%= result.wildLocation%>
+                    </td>
+                    <td>
+                        <% if (result.imageUrl) { %><img src="<%= result.imageUrl %>" width="200" height="200"><% } %>
+                    </td>
                 </tr>
                 <% }) %>
         </table>
@@ -57,21 +61,15 @@
                 <!-- Contains all the data fields and photo display from webcam -->
                 <form class="object-data" method="POST">
 
-                    <!-- On button press, take photo from webcam -->
+                    <!-- On submit, take photo from webcam -->
                     <div>
-                        <label>Webcam: </label> <input class="buttons" type="button" value="Capture Photo" id="webcam-capture">
+                        <video autoplay id="video" width="640" height="480"></video>
+                        <canvas id="canvas" width="640" height="480" style="display:none"></canvas>
+                        <input type="hidden" name="imageUrl" id="image-url-input">
                     </div>
-                    <br>
 
                     <div class="form-group">
                         <label>Object Name:</label><input type="text" id="obj-name" name="objName">
-                    </div>
-                    <br>
-
-                    <!-- Webcam capture -->
-                    <div class="webcam-output">
-                        <img src="images/vase.jpeg" alt="vase">
-                        <!-- Place holder image -->
                     </div>
                     <br>
 
