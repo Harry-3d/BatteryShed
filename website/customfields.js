@@ -11,7 +11,7 @@ $(function() {
     // And rename all the elements
     var newNumber = parseInt(form.data("fieldno"),10)+1
     clone.attr("data-fieldno", newNumber)
-    clone.children("input").attr("name", function (i,val) {
+    clone.children("input[type=text]").attr("name", function (i,val) {
       return val.replace(/^(\w+?)\d+$/, function(match, $1) { return $1+(newNumber); })
     })
   })
